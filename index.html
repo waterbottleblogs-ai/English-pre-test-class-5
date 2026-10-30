@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Pre Test</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e0f2fe;
+            color: #0f172a;
+            font-size: 18px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border: 2px solid #2b5797;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 42px;
+            font-weight: bold;
+        }
+        .header h3 {
+            margin: 5px 0;
+            font-size: 22px;
+            color: #1e40af;
+        }
+        .student-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: #1e40af;
+        }
+        .student-details div {
+            display: flex;
+            align-items: flex-end;
+        }
+        .student-details input {
+            border: none;
+            border-bottom: 2px solid #1e40af;
+            outline: none;
+            font-size: 18px;
+            margin-left: 5px;
+            font-family: Arial, sans-serif;
+            background: transparent;
+            color: #0f172a;
+        }
+        .section-header {
+            background-color: #bfdbfe;
+            padding: 10px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            border: 2px solid #60a5fa;
+            font-family: Arial, sans-serif;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #1e40af;
+            border-radius: 5px;
+        }
+        .paragraph {
+            border: 2px solid #93c5fd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f8fafc;
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .question-block {
+            margin-bottom: 18px;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+        .question-text {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+        .option-label input {
+            margin-right: 5px;
+            margin-top: 3px;
+        }
+        .section-b-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .word-bank {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            background-color: #bfdbfe;
+            padding: 12px;
+            border-radius: 20px;
+            width: fit-content;
+            margin: 0 auto 20px auto;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            flex-wrap: wrap;
+            font-size: 18px;
+            color: #1e40af;
+            border: 2px solid #60a5fa;
+        }
+        .fill-blank-row {
+            margin-bottom: 15px;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+        .fill-blank-row select {
+            padding: 4px;
+            font-size: 18px;
+            border: 2px solid #1e40af;
+            outline: none;
+            background-color: #f8fafc;
+            border-radius: 4px;
+            color: #0f172a;
+        }
+        .footer-stars {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            font-style: italic;
+            font-family: Arial, sans-serif;
+        }
+        .footer-email {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            color: #4b5563;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        .actions button {
+            background-color: #2b5797;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .actions button:hover {
+            background-color: #1e3a8a;
+        }
+        #result-box {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #d93025;
+            margin-top: 20px;
+            display: none;
+            padding: 15px;
+            background-color: #fee2e2;
+            border: 2px solid #ef4444;
+            border-radius: 8px;
+        }
+        .correct-text { color: green; font-weight: bold; margin-left: 5px; }
+        .wrong-text { color: red; font-weight: bold; margin-left: 5px; }
+        
+        @media (max-width: 768px) {
+            .grid-2-col, .section-b-content {
+                grid-template-columns: 1fr;
+            }
+            .student-details {
+                flex-direction: column;
+            }
+        }
+
+        @media print {
+            body { background-color: #fff; padding: 0; }
+            .container { border: none; box-shadow: none; max-width: 100%; padding: 0; }
+            .actions { display: none; }
+            #result-box { border: none; background-color: transparent; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>English Pre Test</h1>
+        <h3>Class : 5</h3>
+    </div>
+
+    <div class="student-details">
+        <div>Name : <input type="text" style="width: 200px;"></div>
+        <div>Class : <input type="text" style="width: 80px;" value="5"></div>
+        <div>Roll No : <input type="text" style="width: 80px;"></div>
+    </div>
+
+    <!-- Section A -->
+    <div class="section-header">
+        <span>A. Read the paragraph and answer the questions.</span>
+        <span>(10 marks)</span>
+    </div>
+
+    <div class="paragraph">
+        Riya is a happy and helpful girl. She lives in a small village with her family. Her school is near her house. Every morning, she goes to school with her best friend, Anu. They walk together and talk about their dreams. Riya loves nature. She likes to water the plants and take care of the animals. In the evening, she reads story books and helps her mother at home. Riya wants to become a teacher one day. She believes that education can make the world a better place.
+    </div>
+
+    <div class="grid-2-col">
+        <!-- Q1 to Q5 -->
+        <div>
+            <div class="question-block" id="qb1">
+                <div class="question-text">1. Where does Riya live?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q1" value="a"> a) In a city</label>
+                    <label class="option-label"><input type="radio" name="q1" value="b"> b) In a village</label>
+                    <label class="option-label"><input type="radio" name="q1" value="c"> c) In a town</label>
+                    <label class="option-label"><input type="radio" name="q1" value="d"> d) In a forest</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb2">
+                <div class="question-text">2. Who goes to school with Riya?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q2" value="a"> a) Her brother</label>
+                    <label class="option-label"><input type="radio" name="q2" value="b"> b) Her sister</label>
+                    <label class="option-label"><input type="radio" name="q2" value="c"> c) Anu</label>
+                    <label class="option-label"><input type="radio" name="q2" value="d"> d) Her mother</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb3">
+                <div class="question-text">3. What does Riya like to do?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q3" value="a"> a) Play video games</label>
+                    <label class="option-label"><input type="radio" name="q3" value="b"> b) Water plants</label>
+                    <label class="option-label"><input type="radio" name="q3" value="c"> c) Watch TV</label>
+                    <label class="option-label"><input type="radio" name="q3" value="d"> d) Sleep all day</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb4">
+                <div class="question-text">4. What does Riya do in the evening?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q4" value="a"> a) Plays</label>
+                    <label class="option-label"><input type="radio" name="q4" value="b"> b) Reads story books</label>
+                    <label class="option-label"><input type="radio" name="q4" value="c"> c) Goes for a walk</label>
+                    <label class="option-label"><input type="radio" name="q4" value="d"> d) Helps her father</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb5">
+                <div class="question-text">5. What does Riya want to become?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q5" value="a"> a) Doctor</label>
+                    <label class="option-label"><input type="radio" name="q5" value="b"> b) Teacher</label>
+                    <label class="option-label"><input type="radio" name="q5" value="c"> c) Pilot</label>
+                    <label class="option-label"><input type="radio" name="q5" value="d"> d) Police officer</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q6 to Q10 -->
+        <div>
+            <div class="question-block" id="qb6">
+                <div class="question-text">6. What is Riya's best friend's name?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q6" value="a"> a) Sanu</label>
+                    <label class="option-label"><input type="radio" name="q6" value="b"> b) Anu</label>
+                    <label class="option-label"><input type="radio" name="q6" value="c"> c) Rohan</label>
+                    <label class="option-label"><input type="radio" name="q6" value="d"> d) Meena</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb7">
+                <div class="question-text">7. How does Riya go to school?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q7" value="a"> a) By bus</label>
+                    <label class="option-label"><input type="radio" name="q7" value="b"> b) By car</label>
+                    <label class="option-label"><input type="radio" name="q7" value="c"> c) By cycle</label>
+                    <label class="option-label"><input type="radio" name="q7" value="d"> d) On foot</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb8">
+                <div class="question-text">8. What does Riya love?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q8" value="a"> a) Games</label>
+                    <label class="option-label"><input type="radio" name="q8" value="b"> b) Nature</label>
+                    <label class="option-label"><input type="radio" name="q8" value="c"> c) Cooking</label>
+                    <label class="option-label"><input type="radio" name="q8" value="d"> d) Shopping</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb9">
+                <div class="question-text">9. Who helps Riya at home in the evening?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q9" value="a"> a) Father</label>
+                    <label class="option-label"><input type="radio" name="q9" value="b"> b) Mother</label>
+                    <label class="option-label"><input type="radio" name="q9" value="c"> c) Brother</label>
+                    <label class="option-label"><input type="radio" name="q9" value="d"> d) Sister</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb10">
+                <div class="question-text">10. What does Riya believe?</div>
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label class="option-label"><input type="radio" name="q10" value="a"> a) Games are important</label>
+                    <label class="option-label"><input type="radio" name="q10" value="b"> b) Education can make the world a better place</label>
+                    <label class="option-label"><input type="radio" name="q10" value="c"> c) Travel is the best</label>
+                    <label class="option-label"><input type="radio" name="q10" value="d"> d) Money is everything</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section B -->
+    <div class="section-header">
+        <span>B. Look at the picture and answer the questions.</span>
+        <span>(5 marks)</span>
+    </div>
+
+    <div class="section-b-content">
+        <div>
+            <div class="question-block" id="qb11">
+                <div class="question-text">11. What is the girl doing?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q11" value="a"> a) Reading a book</label>
+                    <label class="option-label"><input type="radio" name="q11" value="b"> b) Playing football</label>
+                    <label class="option-label"><input type="radio" name="q11" value="c"> c) Writing a letter</label>
+                    <label class="option-label"><input type="radio" name="q11" value="d"> d) Cooking</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb12">
+                <div class="question-text">12. What is the dog doing?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q12" value="a"> a) Sleeping</label>
+                    <label class="option-label"><input type="radio" name="q12" value="b"> b) Running</label>
+                    <label class="option-label"><input type="radio" name="q12" value="c"> c) Eating</label>
+                    <label class="option-label"><input type="radio" name="q12" value="d"> d) Playing with the ball</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb13">
+                <div class="question-text">13. What colour is the girl's dress?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q13" value="a"> a) Red</label>
+                    <label class="option-label"><input type="radio" name="q13" value="b"> b) Blue</label>
+                    <label class="option-label"><input type="radio" name="q13" value="c"> c) Yellow</label>
+                    <label class="option-label"><input type="radio" name="q13" value="d"> d) Pink</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb14">
+                <div class="question-text">14. How many birds are there in the picture?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q14" value="a"> a) One</label>
+                    <label class="option-label"><input type="radio" name="q14" value="b"> b) Two</label>
+                    <label class="option-label"><input type="radio" name="q14" value="c"> c) Three</label>
+                    <label class="option-label"><input type="radio" name="q14" value="d"> d) Four</label>
+                </div>
+            </div>
+            <div class="question-block" id="qb15">
+                <div class="question-text">15. Where is the girl sitting?</div>
+                <div class="options-grid">
+                    <label class="option-label"><input type="radio" name="q15" value="a"> a) On a chair</label>
+                    <label class="option-label"><input type="radio" name="q15" value="b"> b) On the grass</label>
+                    <label class="option-label"><input type="radio" name="q15" value="c"> c) On a bench</label>
+                    <label class="option-label"><input type="radio" name="q15" value="d"> d) On the floor</label>
+        </div>
+    </div>
+</div>
+<div>
+    <img src="https://drive.google.com/thumbnail?id=1QQQebDPOoZfrM41HzZrpyRMuspKU6MdS&sz=w1000" width="100%" alt="Picture of a girl reading and a sleeping dog" onerror="this.src='https://drive.google.com/uc?export=view&id=1QQQebDPOoZfrM41HzZrpyRMuspKU6MdS';">
+</div>
+</div>
+
+<!-- Section C -->
+    <div class="section-header">
+        <span>C. Fill in the blanks with the correct word.</span>
+        <span>(5 marks)</span>
+    </div>
+
+    <div class="word-bank">
+        <span>school</span>
+        <span>eat</span>
+        <span>running</span>
+        <span>book</span>
+        <span>happy</span>
+    </div>
+
+    <div class="fill-blank-row" id="qb16">
+        16. I go to 
+        <select id="q16">
+            <option value="">-----------</option>
+            <option value="school">school</option>
+            <option value="eat">eat</option>
+            <option value="running">running</option>
+            <option value="book">book</option>
+            <option value="happy">happy</option>
+        </select> 
+        every day. <span class="feedback"></span>
+    </div>
+    <div class="fill-blank-row" id="qb17">
+        17. The little boy is 
+        <select id="q17">
+            <option value="">-----------</option>
+            <option value="school">school</option>
+            <option value="eat">eat</option>
+            <option value="running">running</option>
+            <option value="book">book</option>
+            <option value="happy">happy</option>
+        </select> 
+        in the park. <span class="feedback"></span>
+    </div>
+    <div class="fill-blank-row" id="qb18">
+        18. We 
+        <select id="q18">
+            <option value="">-----------</option>
+            <option value="school">school</option>
+            <option value="eat">eat</option>
+            <option value="running">running</option>
+            <option value="book">book</option>
+            <option value="happy">happy</option>
+        </select> 
+        rice and vegetables for lunch. <span class="feedback"></span>
+    </div>
+    <div class="fill-blank-row" id="qb19">
+        19. She is reading a story 
+        <select id="q19">
+            <option value="">-----------</option>
+            <option value="school">school</option>
+            <option value="eat">eat</option>
+            <option value="running">running</option>
+            <option value="book">book</option>
+            <option value="happy">happy</option>
+        </select>. <span class="feedback"></span>
+    </div>
+    <div class="fill-blank-row" id="qb20">
+        20. I am 
+        <select id="q20">
+            <option value="">-----------</option>
+            <option value="school">school</option>
+            <option value="eat">eat</option>
+            <option value="running">running</option>
+            <option value="book">book</option>
+            <option value="happy">happy</option>
+        </select> 
+        because it is my birthday. <span class="feedback"></span>
+    </div>
+
+    <div class="footer-stars">
+        ******** All the best ********
+    </div>
+    
+    <div class="footer-email">
+        cksudhimash@gmail.com
+    </div>
+
+    <div id="result-box"></div>
+
+    <div class="actions">
+        <button onclick="evaluateTest()">Submit Answers</button>
+        <button onclick="window.print()">Save / Download PDF</button>
+    </div>
+
+</div>
+
+<script>
+    const correctAnswers = {
+        q1: 'b', q2: 'c', q3: 'b', q4: 'b', q5: 'b',
+        q6: 'b', q7: 'd', q8: 'b', q9: 'b', q10: 'b',
+        q11: 'a', q12: 'a', q13: 'd', q14: 'c', q15: 'b',
+        q16: 'school', q17: 'running', q18: 'eat', q19: 'book', q20: 'happy'
+    };
+
+    function evaluateTest() {
+        let score = 0;
+        let total = 20;
+
+        // Reset previous feedback
+        document.querySelectorAll('.feedback').forEach(el => el.innerHTML = '');
+
+        // Evaluate Multiple Choice (1-15)
+        for (let i = 1; i <= 15; i++) {
+            let qName = 'q' + i;
+            let selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
+            let block = document.getElementById('qb' + i);
+            let qText = block.querySelector('.question-text');
+            
+            // Remove previous indicators
+            let existingSpan = qText.querySelector('span');
+            if(existingSpan) existingSpan.remove();
+
+            let resultSpan = document.createElement('span');
+
+            if (selectedOption) {
+                if (selectedOption.value === correctAnswers[qName]) {
+                    score++;
+                    resultSpan.innerHTML = ' (Correct)';
+                    resultSpan.className = 'correct-text';
+                } else {
+                    resultSpan.innerHTML = ' (Wrong)';
+                    resultSpan.className = 'wrong-text';
+                }
+            } else {
+                resultSpan.innerHTML = ' (Not Answered)';
+                resultSpan.className = 'wrong-text';
+            }
+            qText.appendChild(resultSpan);
+        }
+
+        // Evaluate Fill in the Blanks (16-20)
+        for (let i = 16; i <= 20; i++) {
+            let qName = 'q' + i;
+            let selectElement = document.getElementById(qName);
+            let feedbackSpan = document.getElementById('qb' + i).querySelector('.feedback');
+            
+            if (selectElement.value === correctAnswers[qName]) {
+                score++;
+                feedbackSpan.innerHTML = '(Correct)';
+                feedbackSpan.className = 'feedback correct-text';
+            } else if (selectElement.value === "") {
+                feedbackSpan.innerHTML = '(Not Answered)';
+                feedbackSpan.className = 'feedback wrong-text';
+            } else {
+                feedbackSpan.innerHTML = '(Wrong)';
+                feedbackSpan.className = 'feedback wrong-text';
+            }
+        }
+
+        let resultBox = document.getElementById('result-box');
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `Evaluation Completed!<br>Total Marks: ${score} / ${total}`;
+        
+        // Scroll to the result box so the user can easily see their score
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
